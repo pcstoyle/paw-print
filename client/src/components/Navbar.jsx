@@ -16,8 +16,8 @@ function Navbar( {currentPage, handlePageChange} ) {
       <li className="nav-item">
         <a
           href="#currentDogs"
-          onClick={() => handlePageChange('Current Dogs')}
-          className={currentPage === 'Current Dogs' ? 'nav-link active' : 'nav-link'}
+          onClick={() => handlePageChange('CurrentDogs')}
+          className={currentPage === 'CurrentDogs' ? 'nav-link active' : 'nav-link'}
         >
           Current Dogs
         </a>

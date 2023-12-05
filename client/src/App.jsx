@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import CurrentDogs from './pages/CurrentDogs';
 import Reservations from './pages/Reservations';
+import Payment from './pages/Payments';
 
 function App() {
   const [ currentPage, setCurrentPage ] = useState ('Home');
