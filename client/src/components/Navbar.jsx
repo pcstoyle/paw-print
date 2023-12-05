@@ -3,7 +3,7 @@ import '../styles/Navbar.css';
 function Navbar( {currentPage, handlePageChange} ) {
   return (
     <nav className="navBar">
-      <ul className="nav nav-tabs">
+      <ul class="flex space-x-4 justify-center" className="nav nav-tabs">
       <li className="nav-item">
         <a
           href="#home"
