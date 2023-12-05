@@ -1,5 +1,5 @@
 import Card from '../components/Card';
-import luna from '../assets/luna.png';
+import luna from '../images/luna.png';
 
 function CurrentDogs() {
     const projects = [
