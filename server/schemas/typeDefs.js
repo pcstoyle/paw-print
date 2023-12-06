@@ -9,7 +9,7 @@ const typeDefs = gql`
     thoughts: [Thought]!
   }
 
-  type dogs {
+  type Dogs {
     id: ID!
     name: String!
     breed: String!
@@ -18,6 +18,11 @@ const typeDefs = gql`
     vaccinated: Boolean!
     owner: [owner]
 }
+    type Owner {
+        id: ID! 
+        name: String!
+        dogs: [Dogs]
+    }
 
   type Comment {
     _id: ID
