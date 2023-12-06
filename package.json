@@ -15,7 +15,14 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+<<<<<<< HEAD
+        "concurrently": "^5.1.0"
+    },
+    "dependencies": {
+        "jsonwebtoken": "^9.0.2"
+=======
         "@tailwindcss/typography": "^0.5.10",
         "concurrently": "^5.1.0"
+>>>>>>> 9f1e51e77b5c89436b7b06eb7ebe7732b9689585
     }
 }
