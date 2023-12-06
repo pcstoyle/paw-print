@@ -43,7 +43,7 @@ function CurrentDogs() {
     ]
     return (
       <section>
-          <h2> Current Dogs </h2>
+        
           <div>
             { projects.map (({id, title, imgsrc}) => (
                 <Card key={id} title={title} imgsrc={imgsrc}/>
