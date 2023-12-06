@@ -8,27 +8,26 @@ const typeDefs = gql`
     password: String
     thoughts: [Thought]!
   }
+  type Owner {
+    _id: ID! 
+    firstName: String
+    lastName: String
+    dogs: [Dogs]
+  }
 
   type Dogs {
-    id: ID!
+    _id: ID!
     name: String!
     breed: String!
     age: Int!
     gender: String!
     vaccinated: Boolean!
     owner: [owner]
-}
-    type Owner {
-        id: ID! 
-        name: String!
-        dogs: [Dogs]
-    }
+  }
 
-  type Comment {
+  type Room {
     _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    occupied: BOOLEAN!
   }
 
   type Auth {
@@ -48,9 +47,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
   }
 `;
 

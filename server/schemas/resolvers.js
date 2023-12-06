@@ -82,23 +82,6 @@ const resolvers = {
         throw AuthenticationError;
         ('You need to be logged in!');
       },
-      addComment: async (parent, { thoughtId, commentText }, context) => {
-        if (context.user) {
-          return Thought.findOneAndUpdate(
-            { _id: thoughtId },
-            {
-              $addToSet: {
-                comments: { commentText, commentAuthor: context.user.username },
-              },
-            },
-            {
-              new: true,
-              runValidators: true,
-            }
-          );
-        }
-        throw AuthenticationError;
-      },
       removeThought: async (parent, { thoughtId }, context) => {
         if (context.user) {
           const thought = await Thought.findOneAndDelete({
@@ -112,23 +95,6 @@ const resolvers = {
           );
   
           return thought;
-        }
-        throw AuthenticationError;
-      },
-      removeComment: async (parent, { thoughtId, commentId }, context) => {
-        if (context.user) {
-          return Thought.findOneAndUpdate(
-            { _id: thoughtId },
-            {
-              $pull: {
-                comments: {
-                  _id: commentId,
-                  commentAuthor: context.user.username,
-                },
-              },
-            },
-            { new: true }
-          );
         }
         throw AuthenticationError;
       },
