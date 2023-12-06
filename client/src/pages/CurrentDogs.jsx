@@ -6,13 +6,15 @@ function CurrentDogs() {
         {
             id: 1,
             name: 'Luna',
+            breed: '',
             imgsrc: luna,
             description: 'This might actually need to turn to our kennel view - but again, bare bones',
             
         },
         {
             id: 2,
-            name: '',
+            name: 'Tallmadge',
+            breed: 'GSD/Boxer',
             imgsrc: '',
             description: '',
         },
@@ -43,10 +45,10 @@ function CurrentDogs() {
     ]
     return (
       <section>
-          <h2> Current Dogs </h2>
+        
           <div>
-            { projects.map (({id, title, imgsrc}) => (
-                <Card key={id} title={title} imgsrc={imgsrc}/>
+            { projects.map (({id, title, name,  imgsrc}) => (
+                <Card key={id} title={title} name={name} imgsrc={imgsrc}/>
             ) )}
           </div>
       </section>
