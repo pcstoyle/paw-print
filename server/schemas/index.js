@@ -1,4 +1,4 @@
-const dogs = require('./dogs');
-const rooms = require('./rooms');
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
 
-module.exports = { dogs, rooms };
+module.exports = { typeDefs, resolvers };
