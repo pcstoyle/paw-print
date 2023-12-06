@@ -1,9 +1,9 @@
 function Login() {
     return (
-        <section>
+        <section class="flex justify-center">
           
 
-        <div class="mt-7 w-full bg-fuchsia-200 rounded-lg border-4 border-violet-600 shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="mt-7 w-full bg-stone-200 rounded-lg border-4 border-violet-600 shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="p-3 space-y-2 md:space-y-2 sm:p-5">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Pawprint <br />Login

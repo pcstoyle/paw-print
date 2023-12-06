@@ -10,9 +10,10 @@ import Home from './pages/Home';
 import CurrentDogs from './pages/CurrentDogs';
 import Reservations from './pages/Reservations';
 import Payment from './pages/Payments';
+import Login from './pages/Login';
 
 function App() {
-  const [ currentPage, setCurrentPage ] = useState ('Home');
+  const [ currentPage, setCurrentPage ] = useState (  );
 
   const renderPage = () => {
     if (currentPage === 'Home') {
@@ -27,6 +28,9 @@ function App() {
     if (currentPage === 'Payment') {
     return <Payment />;
     }
+    if (currentPage === 'Login') {
+      return <Login />;
+      }
   };
 
   const handlePageChange = (page) => setCurrentPage(page);

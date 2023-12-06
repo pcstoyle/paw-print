@@ -2,7 +2,7 @@ import '../styles/Navbar.css';
 
 function Navbar( {currentPage, handlePageChange} ) {
   return (
-    <nav className="navBar">
+    <nav class="flex space-x-4 justify-center" className="navBar">
       <ul class="flex space-x-4 justify-center" className="nav nav-tabs">
       <li className="nav-item">
         <a
@@ -38,6 +38,15 @@ function Navbar( {currentPage, handlePageChange} ) {
           className={currentPage === 'Payment' ? 'nav-link active' : 'nav-link'}
         >
           Payment
+        </a>
+      </li>
+      <li className="nav-item">
+        <a
+          href="#login"
+          onClick={() => handlePageChange('Login')}
+          className={currentPage === 'Login' ? 'nav-link active' : 'nav-link'}
+        >
+          Login
         </a>
       </li>
     </ul>
