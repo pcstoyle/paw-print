@@ -7,7 +7,8 @@ const typeDefs = gql`
     email: String
     password: String
   }
-  type Owner {
+
+  type Owners {
     _id: ID! 
     firstName: String
     lastName: String
@@ -23,10 +24,10 @@ const typeDefs = gql`
     rabies: String
     bordetella: String
     Distemper: String
-    owner: [Owner]
+    owner: [Owners]
   }
 
-  type Room {
+  type Rooms {
     _id: ID
     occupied: Boolean!
   }
@@ -40,8 +41,11 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     me: User
-    dog(dogsId: ID!): Dogs
     dogs: [Dogs]
+    dog(_id: ID!): Dog
+    owners: [Owners]
+    owner(ownerId: ID!): Owner
+    rooms: [Rooms]
   }
 
   type Mutation {
