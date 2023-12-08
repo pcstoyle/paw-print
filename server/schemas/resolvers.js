@@ -5,15 +5,13 @@ const resolvers = {
     Query: {
       users: async () => {
         return User.find()
-        .populate('thoughts');
       },
       user: async (parent, { username }) => {
         return User.findOne({ username })
-        .populate('thoughts');
       },
       dogs: async () => {
         return Dogs.find()
-        // .populate('dogs');
+        .populate('dogs');
       },
       dog: async (parent, { dogsId }) => {
         return Dogs.findOne({ _id: dogsId });
@@ -58,12 +56,12 @@ const resolvers = {
         return { token, user };
       },
       addDog: async (parent, { dogName }, context) => {
-        if (context.owner) {
+        if (context.Owners) {
           const dog = await Dog.create({
             dogName,
           });
   
-          await owner.findOneAndUpdate(
+          await Owners.findOneAndUpdate(
             { _id: context.owner._id },
             { $addToSet: { dogs: dog._id } }
           );
@@ -74,17 +72,48 @@ const resolvers = {
         ('You need to be logged in!');
       },
       removeDog: async (parent, { dogsId }, context) => {
-        if (context.owner) {
+        if (context.Owners) {
           const dog = await Dog.findOneAndDelete({
             _id: dogId,
           });
   
-          await Owner.findOneAndUpdate(
+          await Owners.findOneAndUpdate(
             { _id: context.owner._id },
             { $pull: { dogs: dog._id } }
           );
   
           return dogs;
+        }
+        throw AuthenticationError;
+      },
+      addRoom: async (parent, { roomId }, context) => {
+        if (context.Rooms) {
+          const room = await Rooms.create({
+            roomId,
+          });
+  
+          await Rooms.findOneAndUpdate(
+            { _id: context.rooms._id },
+            { $addToSet: { rooms: room._id } }
+          );
+  
+          return Rooms;
+        }
+        throw AuthenticationError;
+        ('You need to be logged in!');
+      },
+      removeRoom: async (parent, { roomsId }, context) => {
+        if (context.Rooms) {
+          const room = await Rooms.findOneAndDelete({
+            _id: roomId,
+          });
+  
+          await Rooms.findOneAndUpdate(
+            { _id: context.rooms._id },
+            { $addToSet: { rooms: room._id } }
+          );
+  
+          return Rooms;
         }
         throw AuthenticationError;
       },
