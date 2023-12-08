@@ -105,15 +105,15 @@ function CurrentDogs() {
     ]
     return (
         <section>
-        <h1 class="m-5">Kennel View</h1>
-      <div class="grid grid-cols-2 place-content-center">
+        <h1 className="m-5">Kennel View</h1>
+      <div className="grid grid-cols-2 place-content-center">
         
-          <div class="">
+          <div className="">
             { rowOne.map (({id, name, breed, kennelNum, date}) => (
                 <Card key={id} kennelNum={kennelNum} name={name} breed={breed} date={date}/>
             ) )}
           </div>
-          <div class="">
+          <div className="">
             { rowTwo.map (({id, name, breed, kennelNum, date}) => (
                 <Card key={id} kennelNum={kennelNum} name={name} breed={breed} date={date}/>
             ) )}
