@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_DOGs = gql `
+export const QUERY_DOGS = gql `
 query Dogs {
     dogs {
       age
@@ -33,3 +33,13 @@ query Dogs($dogsId: ID!) {
     }
   }
 `
+export const QUERY_ME = gql`
+query Query {
+    me {
+      _id
+      email
+      password
+      username
+    }
+  }
+  `
