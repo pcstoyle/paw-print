@@ -9,13 +9,6 @@ const resolvers = {
       user: async (parent, { username }) => {
         return User.findOne({ username }).populate('thoughts');
       },
-      thoughts: async (parent, { username }) => {
-        const params = username ? { username } : {};
-        return Thought.find(params).sort({ createdAt: -1 });
-      },
-      thought: async (parent, { thoughtId }) => {
-        return Thought.findOne({ _id: thoughtId });
-      },
       dogs: async () => {
         return dogs.find().populate('dogs');
       },
@@ -65,11 +58,10 @@ const resolvers = {
   
         return { token, user };
       },
-      addThought: async (parent, { thoughtText }, context) => {
+      addDog: async (parent, { dogName }, context) => {
         if (context.user) {
-          const thought = await Thought.create({
-            thoughtText,
-            thoughtAuthor: context.user.username,
+          const dog = await Dog.create({
+            dogName
           });
   
           await User.findOneAndUpdate(
