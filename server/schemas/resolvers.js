@@ -9,27 +9,23 @@ const resolvers = {
       user: async (parent, { username }) => {
         return User.findOne({ username })
       },
-    //   dogs: async () => {
-    //     const dogs = await Dog.find({});
-    //     return dogs;
-    //   },
       dogs: async () => {
-        return Dogs.find()
-        // .populate('dogs');
+        return Dogs.findAll()
+        .populate('owners');
       },
       dog: async (parent, { dogsId }) => {
         return Dogs.findOne({ _id: dogsId });
       },
       owners: async () => {
         return owners.find()
-        // .populate('owners');
+        .populate('owners');
       },
       owner: async (parent, { ownerId }) => {
         return owner.findOne({ _id: ownerId });
       },
       rooms: async () => {
         return rooms.find()
-        // .populate('rooms');
+        .populate('dogs');
       },
       room: async (parent, { roomId }) => {
         return room.findOne({ _id: roomId });
@@ -63,7 +59,7 @@ const resolvers = {
       },
       addDog: async (parent, { dogName }, context) => {
         if (context.Owners) {
-          const dog = await Dogs.create({
+          const dog = await Dog.create({
             dogName,
           });
   
@@ -72,14 +68,14 @@ const resolvers = {
             { $addToSet: { dogs: dog._id } }
           );
   
-          return dogs;
+          return dog;
         }
         throw AuthenticationError;
         ('You need to be logged in!');
       },
-      removeDog: async (parent, { dogsId }, context) => {
+      removeDog: async (parent, { dogId }, context) => {
         if (context.Owners) {
-          const dog = await Dogs.findOneAndDelete({
+          const dog = await Dog.findOneAndDelete({
             _id: dogId,
           });
   
@@ -88,29 +84,13 @@ const resolvers = {
             { $pull: { dogs: dog._id } }
           );
   
-          return dogs;
+          return dog;
         }
         throw AuthenticationError;
       },
-      addRoom: async (parent, { roomId }, context) => {
+      updateRooms: async (parent, { roomsId }, context) => {
         if (context.Rooms) {
-          const room = await Rooms.create({
-            roomId,
-          });
-  
-          await Rooms.findOneAndUpdate(
-            { _id: context.rooms._id },
-            { $addToSet: { rooms: room._id } }
-          );
-  
-          return Rooms;
-        }
-        throw AuthenticationError;
-        ('You need to be logged in!');
-      },
-      removeRoom: async (parent, { roomsId }, context) => {
-        if (context.Rooms) {
-          const room = await Rooms.findOneAndDelete({
+          const rooms = await Rooms.findOneAndUpdate({
             _id: roomId,
           });
   
@@ -124,22 +104,6 @@ const resolvers = {
         throw AuthenticationError;
         ('You need to be logged in!');
       },
-    //   updateRoom: async (parent, { roomsId }, context) => {
-    //     if (context.Rooms) {
-    //       const room = await Rooms.findOneAndUpdate({
-    //         _id: roomId,
-    //       });
-  
-    //       await Rooms.findOneAndUpdate(
-    //         { _id: context.rooms._id },
-    //         { $addToSet: { rooms: room._id } }
-    //       );
-  
-    //       return Rooms;
-    //     }
-    //     throw AuthenticationError;
-    //     ('You need to be logged in!');
-    //   },
     },
   };
   
