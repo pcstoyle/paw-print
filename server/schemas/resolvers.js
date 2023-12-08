@@ -9,21 +9,27 @@ const resolvers = {
       user: async (parent, { username }) => {
         return User.findOne({ username })
       },
+    //   dogs: async () => {
+    //     const dogs = await Dog.find({});
+    //     return dogs;
+    //   },
       dogs: async () => {
         return Dogs.find()
-        .populate('dogs');
+        // .populate('dogs');
       },
       dog: async (parent, { dogsId }) => {
         return Dogs.findOne({ _id: dogsId });
       },
       owners: async () => {
-        return owners.find().populate('owners');
+        return owners.find()
+        // .populate('owners');
       },
       owner: async (parent, { ownerId }) => {
         return owner.findOne({ _id: ownerId });
       },
       rooms: async () => {
-        return rooms.find().populate('rooms');
+        return rooms.find()
+        // .populate('rooms');
       },
       room: async (parent, { roomId }) => {
         return room.findOne({ _id: roomId });
@@ -57,7 +63,7 @@ const resolvers = {
       },
       addDog: async (parent, { dogName }, context) => {
         if (context.Owners) {
-          const dog = await Dog.create({
+          const dog = await Dogs.create({
             dogName,
           });
   
@@ -73,7 +79,7 @@ const resolvers = {
       },
       removeDog: async (parent, { dogsId }, context) => {
         if (context.Owners) {
-          const dog = await Dog.findOneAndDelete({
+          const dog = await Dogs.findOneAndDelete({
             _id: dogId,
           });
   
@@ -116,7 +122,24 @@ const resolvers = {
           return Rooms;
         }
         throw AuthenticationError;
+        ('You need to be logged in!');
       },
+    //   updateRoom: async (parent, { roomsId }, context) => {
+    //     if (context.Rooms) {
+    //       const room = await Rooms.findOneAndUpdate({
+    //         _id: roomId,
+    //       });
+  
+    //       await Rooms.findOneAndUpdate(
+    //         { _id: context.rooms._id },
+    //         { $addToSet: { rooms: room._id } }
+    //       );
+  
+    //       return Rooms;
+    //     }
+    //     throw AuthenticationError;
+    //     ('You need to be logged in!');
+    //   },
     },
   };
   
