@@ -1,10 +1,13 @@
-import '../styles/Navbar.css';
+// import { useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import '../styles/Navbar.css';
+// import Auth from '../../utils/auth';
 
 function Navbar( {currentPage, handlePageChange} ) {
   return (
     <nav className="navBar">
-      <ul class="flex space-x-4 justify-center" className="nav nav-tabs">
-      <li className="nav-item">
+      <ul class="flex space-x-4 justify-center dark:text-white" className="nav nav-tabs">
+      <li class="dark:text-white" className="nav-item">
         <a
           href="#home"
           onClick={() => handlePageChange('Home')}
@@ -38,6 +41,24 @@ function Navbar( {currentPage, handlePageChange} ) {
           className={currentPage === 'Payment' ? 'nav-link active' : 'nav-link'}
         >
           Payment
+        </a>
+      </li>
+      <li className="nav-item">
+        <a
+          href="#login"
+          onClick={() => handlePageChange('Login')}
+          className={currentPage === 'Login' ? 'nav-link active' : 'nav-link'}
+        >
+          Login
+        </a>
+      </li>
+      <li class="dark:text-white" className="nav-item">
+        <a
+          href="#signup"
+          onClick={() => handlePageChange('Signup')}
+          className={currentPage === 'Signup' ? 'nav-link active' : 'nav-link'}
+        >
+          Signup
         </a>
       </li>
     </ul>
