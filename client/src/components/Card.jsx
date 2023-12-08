@@ -1,16 +1,17 @@
-function Card ( {id, title, breed, name, imgsrc} ) {
+function Card ( {id, kennelNum, breed, name, date} ) {
     return (
-        <div class="h-20 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <div class="flex justify-center px-4 pt-4">
+        <div class="grid grid-cols-4 m-1 ">
+        <div class="h-15 col-span-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+   
+    <div class="grid grid-cols-4 p-4 ">
+        <p class="text-center ">{kennelNum}</p>
+        <h5 class="text-gray-900 dark:text-white text-center">{name}</h5>
+        <p class="text-sm text-gray-500 dark:text-gray-400 text-center">{breed}</p>
+        <p class="">{date}</p>
         
     </div>
-    <div class="flex flex-row items-center pb-10">
-        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{name}</h5>
-        <span class="text-sm text-gray-500 dark:text-gray-400">{breed}</span>
-        <div class="flex mt-4 md:mt-6">
-        
-        </div>
-    </div>
+</div>
+<button class="border rounded-lg  text-white bg-violet-400 hover:bg-violet-700 ">Check-in</button>
 </div>
     )
 };
