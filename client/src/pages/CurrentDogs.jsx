@@ -2,7 +2,7 @@ import Card from '../components/Card';
 import luna from '../images/luna.png';
 
 function CurrentDogs() {
-    const projectOne = [
+    const rowOne = [
         {
             id: 1,
             kennelNum: 1,
@@ -52,7 +52,7 @@ function CurrentDogs() {
             date: '',
             
         },]
-        const projectTwo = [
+        const rowTwo = [
             {
                 id: 7,
                 kennelNum: 7,
@@ -109,12 +109,12 @@ function CurrentDogs() {
       <div class="grid grid-cols-2 place-content-center">
         
           <div class="">
-            { projectOne.map (({id, name, breed, kennelNum, date}) => (
+            { rowOne.map (({id, name, breed, kennelNum, date}) => (
                 <Card key={id} kennelNum={kennelNum} name={name} breed={breed} date={date}/>
             ) )}
           </div>
           <div class="">
-            { projectTwo.map (({id, name, breed, kennelNum, date}) => (
+            { rowTwo.map (({id, name, breed, kennelNum, date}) => (
                 <Card key={id} kennelNum={kennelNum} name={name} breed={breed} date={date}/>
             ) )}
           </div>
