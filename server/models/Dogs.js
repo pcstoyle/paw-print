@@ -28,6 +28,10 @@ const dogSchema = new Schema(
             type: String,
             required: true,
         },
+        age: {
+            type: Int,
+            required: true,
+        },
         gender: {
             type: String,
             required: true,
@@ -48,6 +52,8 @@ const dogSchema = new Schema(
         {
             type: Boolean,
         },
+        owner: {type: String}
+
     },
     {
         toJSON: {
@@ -60,10 +66,6 @@ const dogSchema = new Schema(
 
 
 
-
-
-
-
-const Dogs = model('dog', dogSchema);
+const Dogs = model('dogs', dogSchema);
 
 module.exports = Dogs;

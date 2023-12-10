@@ -2,16 +2,34 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
+    _id: ID!
+    username: String!
+    email: String!
   }
   type Owner {
     _id: ID! 
-    firstName: String
-    lastName: String
+    first: String
+    last: String
     dogs: [Dogs]
+  }
+
+  input OwnerInput {
+    first: String
+    last: String
+  }
+
+  type Feeding{
+    _id: ID!
+    onceDaily: Boolean
+    twiceDaily: Boolean
+    addInstc: String
+  }
+
+  type Vacs {
+    _id: ID!
+    rabies: Boolean
+    bordetella: Boolean
+    distemper: Boolean
   }
 
   type Dogs {
@@ -20,15 +38,10 @@ const typeDefs = gql`
     breed: String!
     age: Int!
     gender: String!
-    rabies: String
-    bordetella: String
-    Distemper: String
-    owner: [Owner]
-  }
-
-  type Room {
-    _id: ID
-    occupied: Boolean!
+    vacs: [Vacs]
+    feeding: [Feeding]
+    checkedIn: Boolean
+    owner: String
   }
 
   type Auth {
@@ -42,11 +55,15 @@ const typeDefs = gql`
     me: User
     dog(dogsId: ID!): Dogs
     dogs: [Dogs]
+    dog(_id: ID!): Dogs
+    owners: [Owners]
+    owner(ownerId: ID!): Owners
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addOwner(first: String!, last: String!) : Owners
   }
 `;
 
