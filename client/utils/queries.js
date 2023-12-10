@@ -1,5 +1,18 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_OWNER = gql `
+query Query($ownerId: ID!) {
+  owner(ownerId: $ownerId) {
+    first
+    last
+    _id
+    dogs {
+      _id
+      name
+    }
+  }
+}`
+
 export const QUERY_DOGS = gql `
 query Dogs {
     dogs {

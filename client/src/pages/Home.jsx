@@ -3,8 +3,13 @@ function Home() {
     return (
       <section>
         <div className='my-4'>
-        <button ><Link to='/add'>
+        <button ><Link to='/addDog'>
       Add a New Dog
+      </Link></button>
+      </div>
+      <div className='my-4'>
+        <button ><Link to='/addOwner'>
+      Add a New Owner
       </Link></button>
       </div>
       <div>
