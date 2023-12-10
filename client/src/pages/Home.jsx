@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom'
 function Home() {
     return (
       <section>
-        <div class="flex">
-      <button>Add a New Dog</button>
+        <div className='my-4'>
+        <button ><Link to='/add'>
+      Add a New Dog
+      </Link></button>
       </div>
       <div>
       <input type="search" placeholder="search"/>

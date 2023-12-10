@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
+import CurrentDogs from './pages/CurrentDogs.jsx'
+import AddDog from './pages/AddDog.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -14,6 +16,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Login />
+      },{
+        path: '/home',
         element: <Home />
       }, {
         path: '/login',
@@ -22,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup />
+      },     
+      {
+        path: '/currentdogs',
+        element: <CurrentDogs />
+      },
+      {
+        path: '/add',
+        element: <AddDog />
       }
     ]
   }

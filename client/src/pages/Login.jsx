@@ -17,7 +17,6 @@ const [login, { error }] = useMutation(LOGIN_USER);
     event.preventDefault();
 
     try {
-      console.log('hi')
       const { data } = await login({
         variables: { ...userFormData },
       });
