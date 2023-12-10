@@ -2,13 +2,13 @@
 import Navbar from './Navbar';
 import Logo from '../images/PawprintLogo.png'
 
-function Header( {currentPage, handlePageChange } ) {
+function Header( ) {
   return (
     <header>
       <div className="flex justify-center items-center">
         <img className="w-1/3" src={Logo} alt="logo" />
       </div>
-      <Navbar currentPage={currentPage} handlePageChange={handlePageChange}/>
+      <Navbar/>
     </header>
   );
 }

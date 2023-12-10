@@ -5,32 +5,42 @@ const resolvers = {
     Query: {
       users: async () => {
         return User.find()
+        // .populate('thoughts');
       },
       user: async (parent, { username }) => {
         return User.findOne({ username })
+        // .populate('thoughts');
       },
+      // thoughts: async (parent, { username }) => {
+      //   const params = username ? { username } : {};
+      //   return Thought.find(params).sort({ createdAt: -1 });
+      // },
+      // thought: async (parent, { thoughtId }) => {
+      //   return Thought.findOne({ _id: thoughtId });
+      // },
       dogs: async () => {
-        return Dogs.findAll()
+        return Dogs.find()
+        // .populate('dogs');
       },
       dog: async (parent, { dogsId }) => {
         return Dogs.findOne({ _id: dogsId });
       },
-      owners: async () => {
-        return Owners.find()
-      },
-      owner: async (parent, { ownerId }) => {
-        return Owners.findOne({ _id: ownerId });
-      },
-      rooms: async () => {
-        return Rooms.find()
-        .populate('dogs');
-      },
-      room: async (parent, { roomId }) => {
-        return Rooms.findOne({ _id: roomId });
-      },
+      // owners: async () => {
+      //   return owners.find().populate('owners');
+      // },
+      // owner: async (parent, { ownerId }) => {
+      //   return owner.findOne({ _id: ownerId });
+      // },
+      // rooms: async () => {
+      //   return rooms.find().populate('rooms');
+      // },
+      // room: async (parent, { roomId }) => {
+      //   return room.findOne({ _id: roomId });
+      // },
       me: async (parent, args, context) => {
         if (context.user) {
           return User.findOne({ _id: context.user._id })
+          // .populate('thoughts');
         }
         throw AuthenticationError;
       },
@@ -44,63 +54,53 @@ const resolvers = {
       },
       login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
+  
         if (!user) {
           throw AuthenticationError;
         }
+  
         const correctPw = await user.isCorrectPassword(password);
+  
         if (!correctPw) {
           throw AuthenticationError;
         }
+  
         const token = signToken(user);
   
         return { token, user };
       },
-      // addDog: async (parent, { dogName }, context) => {
-      //   if (context.Owners) {
-      //     const dog = await Dog.create({
-      //       dogName,
+      // addThought: async (parent, { thoughtText }, context) => {
+      //   if (context.user) {
+      //     const thought = await Thought.create({
+      //       thoughtText,
+      //       thoughtAuthor: context.user.username,
       //     });
   
-      //     await Owners.findOneAndUpdate(
-      //       { _id: context.owner._id },
-      //       { $addToSet: { dogs: dog._id } }
+      //     await User.findOneAndUpdate(
+      //       { _id: context.user._id },
+      //       { $addToSet: { thoughts: thought._id } }
       //     );
   
-      //     return dog;
+      //     return thought;
       //   }
       //   throw AuthenticationError;
       //   ('You need to be logged in!');
       // },
-      // removeDog: async (parent, { dogId }, context) => {
-      //   if (context.Owners) {
-      //     const dog = await Dog.findOneAndDelete({
-      //       _id: dogId,
+      // removeThought: async (parent, { thoughtId }, context) => {
+      //   if (context.user) {
+      //     const thought = await Thought.findOneAndDelete({
+      //       _id: thoughtId,
+      //       thoughtAuthor: context.user.username,
       //     });
   
-      //     await Owners.findOneAndUpdate(
-      //       { _id: context.owner._id },
-      //       { $pull: { dogs: dog._id } }
+      //     await User.findOneAndUpdate(
+      //       { _id: context.user._id },
+      //       { $pull: { thoughts: thought._id } }
       //     );
   
-      //     return dog;
+      //     return thought;
       //   }
       //   throw AuthenticationError;
-      // },
-      // updateRooms: async (parent, { roomsId }, context) => {
-      //   if (context.Rooms) {
-      //     const rooms = await Rooms.findOneAndUpdate({
-      //       _id: roomId,
-      //     });
-  
-      //     await Rooms.findOneAndUpdate(
-      //       { _id: context.rooms._id },
-      //       { $addToSet: { rooms: room._id } }
-      //     );
-  
-      //     return Rooms;
-      //   }
-      //   throw AuthenticationError;
-      //   ('You need to be logged in!');
       // },
     },
   };
