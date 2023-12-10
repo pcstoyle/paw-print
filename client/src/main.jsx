@@ -8,6 +8,8 @@ import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import CurrentDogs from './pages/CurrentDogs.jsx'
 import AddDog from './pages/AddDog.jsx'
+import AddOwner from './pages/AddOwner.jsx'
+import DogProfile from './pages/DogProfile.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,8 +35,14 @@ const router = createBrowserRouter([
         element: <CurrentDogs />
       },
       {
-        path: '/add',
+        path: '/addDog',
         element: <AddDog />
+      },{
+        path: '/addOwner',
+        element: <AddOwner/>
+      },{
+        path: '/profile',
+        element: <DogProfile/>
       }
     ]
   }
