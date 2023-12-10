@@ -6,19 +6,10 @@ const resolvers = {
     Query: {
       users: async () => {
         return User.find()
-        // .populate('thoughts');
       },
       user: async (parent, { username }) => {
         return User.findOne({ username })
-        // .populate('thoughts');
       },
-      // thoughts: async (parent, { username }) => {
-      //   const params = username ? { username } : {};
-      //   return Thought.find(params).sort({ createdAt: -1 });
-      // },
-      // thought: async (parent, { thoughtId }) => {
-      //   return Thought.findOne({ _id: thoughtId });
-      // },
       dogs: async () => {
         return Dogs.find()
         // .populate(‘owners’);
@@ -43,7 +34,6 @@ const resolvers = {
       me: async (parent, args, context) => {
         if (context.user) {
           return User.findOne({ _id: context.user._id })
-          // .populate('thoughts');
         }
         throw AuthenticationError;
       },
@@ -57,19 +47,15 @@ const resolvers = {
       },
       login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
-  
         if (!user) {
           throw AuthenticationError;
         }
-  
         const correctPw = await user.isCorrectPassword(password);
-  
         if (!correctPw) {
           throw AuthenticationError;
         }
-  
         const token = signToken(user);
-  
+
         return { token, user };
       },
       addOwner: async(parent, args) =>{
@@ -81,12 +67,12 @@ const resolvers = {
       //     const dog = await Dog.create({
       //       dogName,
       //     });
-  
+
       //     await Owners.findOneAndUpdate(
       //       { _id: context.owner._id },
       //       { $addToSet: { dogs: dog._id } }
       //     );
-  
+
       //     return dog;
       //   }
       //   throw AuthenticationError;
@@ -97,12 +83,12 @@ const resolvers = {
       //     const dog = await Dog.findOneAndDelete({
       //       _id: dogId,
       //     });
-  
+
       //     await Owners.findOneAndUpdate(
       //       { _id: context.owner._id },
       //       { $pull: { dogs: dog._id } }
       //     );
-  
+
       //     return dog;
       //   }
       //   throw AuthenticationError;
@@ -113,12 +99,12 @@ const resolvers = {
       //     const rooms = await Rooms.findOneAndUpdate({
       //       _id: roomId,
       //     });
-  
+
       //     await Rooms.findOneAndUpdate(
       //       { _id: context.rooms._id },
       //       { $addToSet: { rooms: room._id } }
       //     );
-  
+
       //     return Rooms;
       //   }
       //   throw AuthenticationError;
@@ -126,5 +112,5 @@ const resolvers = {
       // },
     },
   };
-  
+
   module.exports = resolvers;
