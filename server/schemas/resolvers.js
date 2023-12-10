@@ -21,28 +21,11 @@ const resolvers = {
       // },
       dogs: async () => {
         return Dogs.find()
-<<<<<<< HEAD
-        // .populate('dogs');
-=======
         // .populate(‘owners’);
->>>>>>> 90cb49c34279661084c75e228debb06c2d6fe937
       },
       dog: async (parent, { dogsId }) => {
         return Dogs.findOne({ _id: dogsId });
       },
-<<<<<<< HEAD
-      // owners: async () => {
-      //   return owners.find().populate('owners');
-      // },
-      // owner: async (parent, { ownerId }) => {
-      //   return owner.findOne({ _id: ownerId });
-      // },
-      // rooms: async () => {
-      //   return rooms.find().populate('rooms');
-      // },
-      // room: async (parent, { roomId }) => {
-      //   return room.findOne({ _id: roomId });
-=======
       owners: async () => {
         return Owners.find()
         // .populate(‘dogs’)
@@ -56,7 +39,6 @@ const resolvers = {
       // },
       // room: async (parent, { roomId }) => {
       //   return Rooms.findOne({ _id: roomId });
->>>>>>> 90cb49c34279661084c75e228debb06c2d6fe937
       // },
       me: async (parent, args, context) => {
         if (context.user) {
@@ -90,41 +72,6 @@ const resolvers = {
   
         return { token, user };
       },
-<<<<<<< HEAD
-      // addThought: async (parent, { thoughtText }, context) => {
-      //   if (context.user) {
-      //     const thought = await Thought.create({
-      //       thoughtText,
-      //       thoughtAuthor: context.user.username,
-      //     });
-  
-      //     await User.findOneAndUpdate(
-      //       { _id: context.user._id },
-      //       { $addToSet: { thoughts: thought._id } }
-      //     );
-  
-      //     return thought;
-      //   }
-      //   throw AuthenticationError;
-      //   ('You need to be logged in!');
-      // },
-      // removeThought: async (parent, { thoughtId }, context) => {
-      //   if (context.user) {
-      //     const thought = await Thought.findOneAndDelete({
-      //       _id: thoughtId,
-      //       thoughtAuthor: context.user.username,
-      //     });
-  
-      //     await User.findOneAndUpdate(
-      //       { _id: context.user._id },
-      //       { $pull: { thoughts: thought._id } }
-      //     );
-  
-      //     return thought;
-      //   }
-      //   throw AuthenticationError;
-      // },
-=======
       addOwner: async(parent, args) =>{
         const newOwner = await Owners.create(args);
         return newOwner
@@ -177,7 +124,6 @@ const resolvers = {
       //   throw AuthenticationError;
       //   (‘You need to be logged in!’);
       // },
->>>>>>> 90cb49c34279661084c75e228debb06c2d6fe937
     },
   };
   
