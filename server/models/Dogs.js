@@ -1,41 +1,25 @@
 const { Schema, model } = require('mongoose');
-// const Vacs = require('./Vacs');
-// const Feeding = require('./Feeding');
-
-// import { schema } from "./User";
-// const Owners = require('./Owners');
-
-// const genderSchema = new Schema(
-//     {
-//         male: {
-//             type: Boolean,
-//         },
-//         female: {
-//             type: Boolean,
-//         },
-//     }
-// );
-
-
 
 const dogSchema = new Schema(
     {
         name: {
             type: String,
             required: true,
-        }, 
+        },
         breed: {
             type: String,
             required: true,
         },
-        age: {
-            type: Int,
+        dob: {
+            type: Date,
             required: true,
+            get: (value) => format(value, 'MM-yy'), 
+            set: (value) => new Date(value),
         },
         gender: {
             type: String,
             required: true,
-        }, 
+        },
         vacs: [
             {
                 type: Schema.Types.ObjectId,
@@ -48,19 +32,24 @@ const dogSchema = new Schema(
                 ref: 'feeding',
             }
         ],
-        checkedIn: 
+        checkedIn:
         {
             type: Boolean,
         },
-        owner: {type: String}
+        owner: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'owner',
+            }
+        ]
 
     },
     {
         toJSON: {
-          virtuals: true,
+            virtuals: true,
         },
         id: false,
-      }
+    }
 );
 
 

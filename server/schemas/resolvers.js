@@ -1,8 +1,8 @@
-const { Dogs, Owners, Rooms, User } = require('../models');
+const { Dogs, Owner, Rooms, User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
-  // get all users, get single user, get owners, get single owner,
+  // get all users, get single user, get owner, get single owner,
     Query: {
       users: async () => {
         return User.find()
@@ -12,17 +12,17 @@ const resolvers = {
       },
       dogs: async () => {
         return Dogs.find()
-        // .populate(‘owners’);
+        // .populate(‘owner’);
       },
       dog: async (parent, { dogsId }) => {
         return Dogs.findOne({ _id: dogsId });
       },
       owners: async () => {
-        return Owners.find()
+        return Owner.find()
         // .populate(‘dogs’)
       },
       owner: async (parent, { ownerId }) => {
-        return Owners.findOne({ _id: ownerId });
+        return Owner.findOne({ _id: ownerId });
       },
       // rooms: async () => {
       //   return Rooms.find()
@@ -38,18 +38,20 @@ const resolvers = {
         throw AuthenticationError;
       },
     },
-  //add user works, log in works, add owners works, 
+  //add user works, log in works, add  works, 
     Mutation: {
       addUser: async (parent, args) => {
         const user = await User.create(args);
         const token = signToken(user);
         return { token, user };
       },
+
       login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
         if (!user) {
           throw AuthenticationError;
         }
+
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
           throw AuthenticationError;
@@ -58,33 +60,36 @@ const resolvers = {
 
         return { token, user };
       },
+
       addOwner: async(parent, args) =>{
-        const newOwner = await Owners.create(args);
+        const newOwner = await Owner.create(args);
         return newOwner
-      }
+      },
+
       // addDog: async (parent, { dogName }, context) => {
-      //   if (context.Owners) {
+      //   if (context.Owner) {
       //     const dog = await Dog.create({
       //       dogName,
       //     });
 
-      //     await Owners.findOneAndUpdate(
+      //     await Owner.findOneAndUpdate(
       //       { _id: context.owner._id },
       //       { $addToSet: { dogs: dog._id } }
       //     );
 
       //     return dog;
       //   }
-      //   throw AuthenticationError;
-      //   (‘You need to be logged in!’);
-      // },
+        // throw AuthenticationError;
+        // (‘You need to be logged in!’);
+      },
+
       // removeDog: async (parent, { dogId }, context) => {
-      //   if (context.Owners) {
+      //   if (context.Owner) {
       //     const dog = await Dog.findOneAndDelete({
       //       _id: dogId,
       //     });
 
-      //     await Owners.findOneAndUpdate(
+      //     await Owner.findOneAndUpdate(
       //       { _id: context.owner._id },
       //       { $pull: { dogs: dog._id } }
       //     );
