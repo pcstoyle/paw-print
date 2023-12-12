@@ -2,7 +2,6 @@ const { Dog, Owner, Room, User, Vacs, Feeding } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
-  // get all users, get single user, get owner, get single owner,
   Query: {
     users: async () => {
       return User.find()
@@ -50,8 +49,6 @@ const resolvers = {
     },
   },
 
-
-  //add user works, log in works, add  works, 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
@@ -93,7 +90,7 @@ const resolvers = {
       return dog;
     },
 
-    removeDog: async (parent, { dogId }, context) => {
+    removeDog: async (parent, { dogId } ) => {
         const dog = await Dog.findOneAndDelete({
           _id: dogId,
         });
