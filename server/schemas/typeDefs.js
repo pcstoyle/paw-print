@@ -12,12 +12,15 @@ const typeDefs = `
     fullName: String!
     email: String
     phone: String
-    dogs: [Dogs]
+    dog: [Dog]
   }
 
   input OwnerInput {
-    first: String
-    last: String
+    _id: ID!
+    fullName: String
+    email: String
+    phone: String
+    dog: [DogInput]
   }
 
   type Feeding{
@@ -46,16 +49,27 @@ const typeDefs = `
     distemper: Boolean
   }
 
-  type Dogs {
+  type Dog {
     _id: ID!
     name: String!
     breed: String!
-    dob: Int!
+    dob: String!
     gender: String!
     vacs: [Vacs]
     feeding: [Feeding]
     checkedIn: Boolean
     owner: [Owner]
+  }
+
+  input DogInput {
+    name: String!
+    breed: String!
+    dob: String!
+    gender: String!
+    vacs: [VacsInput]
+    feeding: [FeedingInput]
+    checkedIn: Boolean
+    owner: [OwnerInput]
   }
 
   type Auth {

@@ -1,4 +1,4 @@
-const { Dogs, Owner, Room, User, Vacs, Feeding } = require('../models');
+const { Dog, Owner, Room, User, Vacs, Feeding } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -21,15 +21,25 @@ const resolvers = {
         return Owner.findOne({ _id: ownerId });
       },
       //get all dogs
-      dogs: async () => {
-        return Dogs.find()
+      dog: async () => {
+        return Dog.find()
         // .populate(‘owner’);
       },
       //get single dog
       dog: async (parent, { dogsId }) => {
-        return Dogs.findOne({ _id: dogsId });
+        return Dog.findOne({ _id: dogsId });
       },
       //get all rooms
+<<<<<<< HEAD
+      room: async () => {
+        return Room.find()
+        // .populate(‘dogs’);
+      },
+      //get single room
+      room: async (parent, { roomId }) => {
+        return Room.findOne({ _id: roomId });
+      },
+=======
       // rooms: async () => {
       //   return Rooms.find()
       //   // .populate(‘dogs’);
@@ -38,6 +48,7 @@ const resolvers = {
       // room: async (parent, { roomId }) => {
       //   return Rooms.findOne({ _id: roomId });
       // },
+>>>>>>> c299862ae1bd98776512b58f4eec36ff031b1739
       // user login authentication
       me: async (parent, args, context) => {
         if (context.user) {
@@ -74,26 +85,25 @@ const resolvers = {
         return { token, user };
       },
 // ----------------------------------------------------------------------
-      addOwner: async(parent, args) =>{
-        const newOwner = await Owner.create(args);
+      addOwner: async (parent, { fullName, email, phone, dog } ) => {
+          const newOwner = await Owner.create({ fullName, email, phone, dog });
         return newOwner
-      },
+    },
 
-      // addDog: async (parent, { dogName }, context) => {
-      //   if (context.Owner) {
-      //     const dog = await Dog.create({
-      //       dogName,
-      //     });
+      addDog: async (parent, { name, breed, dob, gender, vacs, feeding, ownerId }) => {
+          const dog = await Dog.create({
+            name, breed, dob, gender, vacs, feeding, ownerId
+          });
 
-      //     await Owner.findOneAndUpdate(
-      //       { _id: context.owner._id },
-      //       { $addToSet: { dogs: dog._id } }
-      //     );
+          await Owner.findOneAndUpdate(
+            { _id: Owner._id},
+            { $addToSet: { dogs: dog._id } }
+          );
 
-      //     return dog;
-      //   }
-        // throw AuthenticationError;
-        // (‘You need to be logged in!’);
+          return dog;
+        // } else {
+        //   throw new Error("Owner not found.");
+        // }
       },
 
       // removeDog: async (parent, { dogId }, context) => {
@@ -104,7 +114,7 @@ const resolvers = {
 
       //     await Owner.findOneAndUpdate(
       //       { _id: context.owner._id },
-      //       { $pull: { dogs: dog._id } }
+      //       { $pull: { dog: dog._id } }
       //     );
 
       //     return dog;
@@ -128,7 +138,7 @@ const resolvers = {
       //   throw AuthenticationError;
       //   (‘You need to be logged in!’);
       // },
-    };
-  // };
+    }
+  };
 
   module.exports = resolvers;
