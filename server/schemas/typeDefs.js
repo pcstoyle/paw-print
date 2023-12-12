@@ -37,17 +37,24 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     breed: String!
-    age: Int!
+    dob: Date!
     gender: String!
     rabies: [Vacs]
     feeding: [Feeding]
     checkedIn: Boolean
-    owner: String
+    owner: [Owner]
   }
 
   type Auth {
     token: ID!
     user: User
+  }
+
+  Type Room {
+    roomNumber: Number
+    amOnly: Boolean
+    pmOnly: Boolean
+    amAndPm: Boolean
   }
 
   type Query {
@@ -56,14 +63,15 @@ const typeDefs = gql`
     me: User
     dogs: [Dogs]
     dog(_id: ID!): Dogs
-    owners: [Owners]
-    owner(ownerId: ID!): Owners
+    owner: [Owner]
+    owner(ownerId: ID!): Owner
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addOwner(first: String!, last: String!) : Owners
+    addOwner(first: String!, last: String!) : Owner
+    addDog(name: String!, breed: String!, age: int!, gender: String!, vacs: [Vacs], feeding: [Feeding], checkedIn: Boolean, owner: [Owner]): Dogs
   }
 `;
 

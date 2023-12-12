@@ -23,3 +23,11 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const ADD_OWNER = gql `
+mutation addOwner($first: String!, $last: String!) {
+  addOwner(first: $first, last: $last) {
+    _id
+    first
+    last
+  }
+}`
