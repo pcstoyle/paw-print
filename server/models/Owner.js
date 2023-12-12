@@ -3,27 +3,24 @@ const { Schema, model } = require('mongoose');
 
 const ownerSchema = new Schema(
     {
-        first: String,
-        last: String,
-        dogs: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'dogs'
-            }
-        ],
+        fullName: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+        },
+        phone: {
+            type: String,
+        },
+        dogs: {
+            type: Schema.Types.ObjectId,
+            ref: 'dogs'
+
+        },
     },
-    {
-    toJSON: {
-        virtuals: true,
-    },
-    id: false,
-    }
+    
 );
-
-
-
-
-
 
 const Owner = model('owner', ownerSchema);
 
