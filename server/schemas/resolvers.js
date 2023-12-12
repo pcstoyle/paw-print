@@ -30,16 +30,16 @@ const resolvers = {
         return Dog.findOne({ _id: dogsId });
       },
       //get all rooms
-<<<<<<< HEAD
-      room: async () => {
-        return Room.find()
-        // .populate(‘dogs’);
-      },
-      //get single room
-      room: async (parent, { roomId }) => {
-        return Room.findOne({ _id: roomId });
-      },
-=======
+
+      // room: async () => {
+      //   return Room.find()
+      //   // .populate(‘dogs’);
+      // },
+      // //get single room
+      // room: async (parent, { roomId }) => {
+      //   return Room.findOne({ _id: roomId });
+      // },
+
       // rooms: async () => {
       //   return Rooms.find()
       //   // .populate(‘dogs’);
@@ -48,7 +48,7 @@ const resolvers = {
       // room: async (parent, { roomId }) => {
       //   return Rooms.findOne({ _id: roomId });
       // },
->>>>>>> c299862ae1bd98776512b58f4eec36ff031b1739
+
       // user login authentication
       me: async (parent, args, context) => {
         if (context.user) {
@@ -84,7 +84,7 @@ const resolvers = {
 
         return { token, user };
       },
-// ----------------------------------------------------------------------
+
       addOwner: async (parent, { fullName, email, phone, dog } ) => {
           const newOwner = await Owner.create({ fullName, email, phone, dog });
         return newOwner
@@ -97,14 +97,14 @@ const resolvers = {
 
           await Owner.findOneAndUpdate(
             { _id: Owner._id},
-            { $addToSet: { dogs: dog._id } }
+            { $addToSet: { dog: dog._id } }
           );
 
-          return dog;
+            return dog;}
         // } else {
         //   throw new Error("Owner not found.");
         // }
-      },
+// 
 
       // removeDog: async (parent, { dogId }, context) => {
       //   if (context.Owner) {
