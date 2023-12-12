@@ -3,7 +3,11 @@ const { Schema, model } = require('mongoose');
 
 const ownerSchema = new Schema(
     {
-        fullName: {
+        first: {
+            type: String,
+            required: true,
+        },
+        last: {
             type: String,
             required: true,
         },

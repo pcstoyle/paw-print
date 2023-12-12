@@ -52,7 +52,7 @@ return(
                         </label>
                     </div>
                 </div>
-            <p className="mb-4 font-semibold text-gray-900 dark:text-white">Vaccination Exp. Dates</p>
+            {/* <p className="mb-4 font-semibold text-gray-900 dark:text-white">Vaccination Exp. Dates</p>
                 <div class="grid grid-cols-3 gap-4">
                     <div class="relative mb-2" data-te-input-wrapper-init>
                         <input
@@ -107,7 +107,7 @@ return(
     <li>
     <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
     <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">AM + PM</label></li>
-</ul>
+</ul> */}
                 <div className='grid grid-cols-2 gap-4'>
                 <button  type="submit" variant="success" className="w-full text-white bg-violet-400 hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"><Link className='text-white' to='/currentdogs'>Finish</Link></button>
                 <button  type="submit" variant="success" className="w-full text-white bg-violet-400 hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"><Link className='text-white' to='/addDog'>Add another dog</Link></button>
