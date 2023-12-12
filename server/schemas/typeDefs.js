@@ -88,8 +88,8 @@ const typeDefs = `
     users: [User]
     user(username: String!): User
     me: User
-    dog: [Dog]
-    room: [Room]
+    dogs: [Dogs]
+    dog(dogsId: ID!): Dogs
     owners: [Owner]
     owner(ownerId: ID!): Owner
   }
@@ -97,8 +97,10 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addOwner(fullName: String!, email: String, phone: String, dog: [DogInput]) : Owner
-    addDog(name: String!, breed: String!, dob: String!, gender: String!, vacs: [VacsInput], feeding: [FeedingInput], checkedIn: Boolean, ownerId: ID! ) : Dog
+    addOwner(first: String!, last: String!) : Owner
+    addDog(name: String!, breed: String!, dob: Int!, gender: String!, vacs: [VacsInput], feeding: [FeedingInput], checkedIn: Boolean, owner: [OwnerInput]): Dogs
+    removeDog()
+    updateRoom()
   }
 `;
 
