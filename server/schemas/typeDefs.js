@@ -1,15 +1,17 @@
-const { gql } = require("apollo-server-express");
+// const { gql } = require("apollo-server-express");
 
-const typeDefs = gql`
+const typeDefs = `
   type User {
     _id: ID!
     username: String!
     email: String!
   }
+
   type Owner {
     _id: ID! 
-    first: String
-    last: String
+    fullName: String!
+    email: String
+    phone: String
     dogs: [Dogs]
   }
 
@@ -25,8 +27,20 @@ const typeDefs = gql`
     addInstc: String
   }
 
+  input FeedingInput {
+    onceDaily: Boolean
+    twiceDaily: Boolean
+    addInstc: String
+  }
+
   type Vacs {
     _id: ID!
+    rabies: Boolean
+    bordetella: Boolean
+    distemper: Boolean
+  }
+
+  input VacsInput {
     rabies: Boolean
     bordetella: Boolean
     distemper: Boolean
@@ -36,7 +50,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     breed: String!
-    dob: Date!
+    dob: Int!
     gender: String!
     vacs: [Vacs]
     feeding: [Feeding]
@@ -49,8 +63,8 @@ const typeDefs = gql`
     user: User
   }
 
-  Type Room {
-    roomNumber: Number
+  type Room {
+    roomNum: Int
     amOnly: Boolean
     pmOnly: Boolean
     amAndPm: Boolean
@@ -62,8 +76,8 @@ const typeDefs = gql`
     me: User
     dog(dogsId: ID!): Dogs
     dogs: [Dogs]
-    dog(_id: ID!): Dogs
-    owner: [Owner]
+    rooms: [Room]
+    owners: [Owner]
     owner(ownerId: ID!): Owner
   }
 
@@ -71,7 +85,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addOwner(first: String!, last: String!) : Owner
-    addDog(name: String!, breed: String!, age: int!, gender: String!, vacs: [Vacs], feeding: [Feeding], checkedIn: Boolean, owner: [Owner]): Dogs
+    addDog(name: String!, breed: String!, dob: Int!, gender: String!, vacs: [VacsInput], feeding: [FeedingInput], checkedIn: Boolean, owner: [OwnerInput]): Dogs
   }
 `;
 

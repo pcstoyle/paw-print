@@ -1,4 +1,4 @@
-const { Dogs, Owner, Rooms, User } = require('../models');
+const { Dogs, Owner, Room, User, Vacs, Feeding } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -7,30 +7,38 @@ const resolvers = {
       users: async () => {
         return User.find()
       },
+      //get single user
       user: async (parent, { username }) => {
         return User.findOne({ username })
       },
-      dogs: async () => {
-        return Dogs.find()
-        // .populate(‘owner’);
-      },
-      dog: async (parent, { dogsId }) => {
-        return Dogs.findOne({ _id: dogsId });
-      },
+      //get all owners
       owners: async () => {
         return Owner.find()
         // .populate(‘dogs’)
       },
+      // get single owner
       owner: async (parent, { ownerId }) => {
         return Owner.findOne({ _id: ownerId });
       },
-      // rooms: async () => {
-      //   return Rooms.find()
-      //   // .populate(‘dogs’);
-      // },
-      // room: async (parent, { roomId }) => {
-      //   return Rooms.findOne({ _id: roomId });
-      // },
+      //get all dogs
+      dogs: async () => {
+        return Dogs.find()
+        // .populate(‘owner’);
+      },
+      //get single dog
+      dog: async (parent, { dogsId }) => {
+        return Dogs.findOne({ _id: dogsId });
+      },
+      //get all rooms
+      rooms: async () => {
+        return Rooms.find()
+        // .populate(‘dogs’);
+      },
+      //get single room
+      room: async (parent, { roomId }) => {
+        return Rooms.findOne({ _id: roomId });
+      },
+      // user login authentication
       me: async (parent, args, context) => {
         if (context.user) {
           return User.findOne({ _id: context.user._id })
@@ -38,10 +46,14 @@ const resolvers = {
         throw AuthenticationError;
       },
     },
+
+
+
+
   //add user works, log in works, add  works, 
     Mutation: {
-      addUser: async (parent, args) => {
-        const user = await User.create(args);
+      addUser: async (parent, { username, email, password }) => {
+        const user = await User.create({ username, email, password });
         const token = signToken(user);
         return { token, user };
       },
@@ -53,6 +65,7 @@ const resolvers = {
         }
 
         const correctPw = await user.isCorrectPassword(password);
+
         if (!correctPw) {
           throw AuthenticationError;
         }
@@ -60,7 +73,7 @@ const resolvers = {
 
         return { token, user };
       },
-
+// ----------------------------------------------------------------------
       addOwner: async(parent, args) =>{
         const newOwner = await Owner.create(args);
         return newOwner
@@ -115,7 +128,7 @@ const resolvers = {
       //   throw AuthenticationError;
       //   (‘You need to be logged in!’);
       // },
-    },
-  };
+    };
+  // };
 
   module.exports = resolvers;

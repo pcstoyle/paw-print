@@ -13,7 +13,7 @@ const dogSchema = new Schema(
         dob: {
             type: Date,
             required: true,
-            get: (value) => format(value, 'MM-yy'), 
+            get: (value) => format(value, 'MM-yy'),
             set: (value) => new Date(value),
         },
         gender: {
