@@ -74,7 +74,6 @@ const typeDefs = `
     users: [User]
     user(username: String!): User
     me: User
-    dog(dogsId: ID!): Dogs
     dogs: [Dogs]
     rooms: [Room]
     owners: [Owner]
