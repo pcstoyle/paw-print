@@ -85,8 +85,8 @@ const resolvers = {
         return { token, user };
       },
 
-      addOwner: async (parent, { fullName, email, phone, dog } ) => {
-          const newOwner = await Owner.create({ fullName, email, phone, dog });
+      addOwner: async (parent, { first, last, email, phone, dog } ) => {
+          const newOwner = await Owner.create({ first, last, email, phone, dog });
         return newOwner
     },
 
