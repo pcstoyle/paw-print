@@ -30,14 +30,17 @@ const resolvers = {
       return Dog.findOne({ _id: dogsId });
     },
     //get all rooms
-    // rooms: async () => {
-    //   return Rooms.find()
+
+    // room: async () => {
+    //   return Room.find()
     //   // .populate(‘dogs’);
     // },
     // //get single room
     // room: async (parent, { roomId }) => {
-    //   return Rooms.findOne({ _id: roomId });
+    //   return Room.findOne({ _id: roomId });
     // },
+
+
     // user login authentication
     me: async (parent, args, context) => {
       if (context.user) {
@@ -71,9 +74,9 @@ const resolvers = {
 
       return { token, user };
     },
-    // ----------------------------------------------------------------------
-    addOwner: async (parent, { fullName, email, phone, dog }) => {
-      const newOwner = await Owner.create({ fullName, email, phone, dog });
+
+    addOwner: async (parent, { first, last, email, phone, dog }) => {
+      const newOwner = await Owner.create({ first, last, email, phone, dog });
       return newOwner
     },
 
@@ -84,21 +87,20 @@ const resolvers = {
 
       await Owner.findOneAndUpdate(
         { _id: Owner._id },
-        { $addToSet: { dogs: dog._id } }
+        { $addToSet: { dog: dog._id } }
       );
 
       return dog;
-      // } else {
-      //   throw new Error("Owner not found.");
-      // }
     },
+
     removeDog: async (parent, { dogId }, context) => {
         const dog = await Dog.findOneAndDelete({
           _id: dogId,
         });
+
         return dog;
       }
-    },
+    }
 
     // updateRooms: async (parent, { roomsId }, context) => {
     //   if (context.Rooms) {
@@ -116,7 +118,7 @@ const resolvers = {
     //   throw AuthenticationError;
     //   (‘You need to be logged in!’);
     // },
-  
-};
 
-module.exports = resolvers;
+  };
+
+  module.exports = resolvers;

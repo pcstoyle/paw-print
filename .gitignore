@@ -2,6 +2,8 @@ node_modules
 package-lock.json
 typeDefs-me.js
 resolvers-me.js
+typeDefs-m.js
+resolvers-m.js
 # Logs
 logs
 *.log

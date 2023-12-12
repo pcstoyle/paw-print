@@ -1,6 +1,7 @@
 import Dogs from '../components/Dogs';
-import luna from '../images/luna.png'
-function DogProfile() {
+import luna from '../images/luna.png';
+
+const DogProfile = () => {
     const rowOne = [
         {
             id: 1,
