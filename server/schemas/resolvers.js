@@ -30,14 +30,14 @@ const resolvers = {
         return Dogs.findOne({ _id: dogsId });
       },
       //get all rooms
-      rooms: async () => {
-        return Rooms.find()
-        // .populate(‘dogs’);
-      },
-      //get single room
-      room: async (parent, { roomId }) => {
-        return Rooms.findOne({ _id: roomId });
-      },
+      // rooms: async () => {
+      //   return Rooms.find()
+      //   // .populate(‘dogs’);
+      // },
+      // //get single room
+      // room: async (parent, { roomId }) => {
+      //   return Rooms.findOne({ _id: roomId });
+      // },
       // user login authentication
       me: async (parent, args, context) => {
         if (context.user) {

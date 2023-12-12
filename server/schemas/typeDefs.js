@@ -75,7 +75,7 @@ const typeDefs = `
     user(username: String!): User
     me: User
     dogs: [Dogs]
-    rooms: [Room]
+    dog(dogsId: ID!): Dogs
     owners: [Owner]
     owner(ownerId: ID!): Owner
   }
@@ -85,6 +85,8 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addOwner(first: String!, last: String!) : Owner
     addDog(name: String!, breed: String!, dob: Int!, gender: String!, vacs: [VacsInput], feeding: [FeedingInput], checkedIn: Boolean, owner: [OwnerInput]): Dogs
+    removeDog()
+    updateRoom()
   }
 `;
 
