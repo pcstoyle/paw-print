@@ -12,12 +12,15 @@ const typeDefs = `
     fullName: String!
     email: String
     phone: String
-    dogs: [Dogs]
+    dog: [Dog]
   }
 
   input OwnerInput {
-    first: String
-    last: String
+    _id: ID!
+    fullName: String
+    email: String
+    phone: String
+    dog: [DogInput]
   }
 
   type Feeding{
@@ -46,16 +49,27 @@ const typeDefs = `
     distemper: Boolean
   }
 
-  type Dogs {
+  type Dog {
     _id: ID!
     name: String!
     breed: String!
-    dob: Int!
+    dob: String!
     gender: String!
     vacs: [Vacs]
     feeding: [Feeding]
     checkedIn: Boolean
     owner: [Owner]
+  }
+
+  input DogInput {
+    name: String!
+    breed: String!
+    dob: String!
+    gender: String!
+    vacs: [VacsInput]
+    feeding: [FeedingInput]
+    checkedIn: Boolean
+    owner: [OwnerInput]
   }
 
   type Auth {
@@ -74,8 +88,8 @@ const typeDefs = `
     users: [User]
     user(username: String!): User
     me: User
-    dogs: [Dogs]
-    rooms: [Room]
+    dog: [Dog]
+    room: [Room]
     owners: [Owner]
     owner(ownerId: ID!): Owner
   }
@@ -83,8 +97,8 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addOwner(first: String!, last: String!) : Owner
-    addDog(name: String!, breed: String!, dob: Int!, gender: String!, vacs: [VacsInput], feeding: [FeedingInput], checkedIn: Boolean, owner: [OwnerInput]): Dogs
+    addOwner(fullName: String!, email: String, phone: String, dog: [DogInput]) : Owner
+    addDog(name: String!, breed: String!, dob: String!, gender: String!, vacs: [VacsInput], feeding: [FeedingInput], checkedIn: Boolean, ownerId: ID! ) : Dog
   }
 `;
 
