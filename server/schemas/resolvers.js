@@ -30,16 +30,6 @@ const resolvers = {
       return Dog.findOne({ _id: dogsId });
     },
     //get all rooms
-<<<<<<< HEAD
-    room: async () => {
-      return Room.find()
-      // .populate(‘dogs’);
-    },
-    //get single room
-    room: async (parent, { roomId }) => {
-      return Room.findOne({ _id: roomId });
-    },
-=======
       // rooms: async () => {
       //   return Rooms.find()
       //   // .populate(‘dogs’);
@@ -48,7 +38,6 @@ const resolvers = {
       // room: async (parent, { roomId }) => {
       //   return Rooms.findOne({ _id: roomId });
       // },
->>>>>>> c299862ae1bd98776512b58f4eec36ff031b1739
     // user login authentication
     me: async (parent, args, context) => {
       if (context.user) {
@@ -104,10 +93,6 @@ const resolvers = {
       }
       return dog;
     },
-    // } else {
-    //   throw new Error("Owner not found.");
-    // },
-    // // },
 
     // removeDog: async (parent, { dogId }, context) => {
     //   if (context.Owner) {
