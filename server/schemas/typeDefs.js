@@ -6,7 +6,8 @@ const typeDefs = gql`
     username: String!
     email: String!
   }
-  type Owner {
+
+  type Owners {
     _id: ID! 
     first: String
     last: String
@@ -38,7 +39,7 @@ const typeDefs = gql`
     breed: String!
     dob: Date!
     gender: String!
-    vacs: [Vacs]
+    rabies: [Vacs]
     feeding: [Feeding]
     checkedIn: Boolean
     owner: [Owner]
@@ -60,7 +61,6 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     me: User
-    dog(dogsId: ID!): Dogs
     dogs: [Dogs]
     dog(_id: ID!): Dogs
     owner: [Owner]
