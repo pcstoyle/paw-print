@@ -1,5 +1,3 @@
-// const { gql } = require("apollo-server-express");
-
 const typeDefs = `
   type User {
     _id: ID!
@@ -102,7 +100,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addOwner(first: String!, last: String!, email: String, phone: String) : Owner
     addDog(name: String!, breed: String!, dob: Int!, gender: String!, checkedIn: Boolean, ownerId: ID!): Dog
-
+    removeDog (dogId: ID!) : Dog
   }
 `;
 
