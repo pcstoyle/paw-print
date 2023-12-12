@@ -85,8 +85,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addOwner(first: String!, last: String!) : Owner
     addDog(name: String!, breed: String!, dob: Int!, gender: String!, vacs: [VacsInput], feeding: [FeedingInput], checkedIn: Boolean, owner: [OwnerInput]): Dogs
-    removeDog()
-    updateRoom()
+    removeDog(dogsId: ID!) : Dogs
   }
 `;
 
