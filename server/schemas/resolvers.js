@@ -20,7 +20,7 @@ const resolvers = {
       return Owner.findOne({ _id: ownerId });
     },
     //get all dogs
-    dog: async () => {
+    dogs: async () => {
       return Dog.find()
       // .populate(‘owner’);
     },
@@ -74,9 +74,9 @@ const resolvers = {
       return newOwner
     },
 
-    addDog: async (parent, { name, breed, dob, gender, vacs, feeding, ownerId }) => {
+    addDog: async (parent, { name, breed, dob, gender, ownerId }) => {
       const dog = await Dog.create({
-        name, breed, dob, gender, vacs, feeding, ownerId
+        name, breed, dob, gender, ownerId
       });
 
       await Owner.findOneAndUpdate(

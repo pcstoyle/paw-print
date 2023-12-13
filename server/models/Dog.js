@@ -53,6 +53,6 @@ const dogSchema = new Schema(
 
 
 
-const Dogs = model('dogs', dogSchema);
+const Dog = model('dogs', dogSchema);
 
-module.exports = Dogs;
+module.exports = Dog;
