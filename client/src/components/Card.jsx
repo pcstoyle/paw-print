@@ -1,4 +1,7 @@
-function Card ( {id, kennelNum, breed, name, date} ) {
+import {Link} from 'react-router-dom'
+
+
+const Card = ( {id, kennelNum, breed, name, date} ) => {
     return (
         <div className="grid grid-cols-4 m-1 ">
         <div className="h-15 col-span-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

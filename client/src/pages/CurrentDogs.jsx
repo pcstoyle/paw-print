@@ -1,123 +1,35 @@
-import Card from '../components/Card';
-import luna from '../images/luna.png';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_DOGS } from '../../utils/queries';
+import Card from '../components/Dogs';
 
-function CurrentDogs() {
-    const rowOne = [
-        {
-            id: 1,
-            kennelNum: 1,
-            name: 'Luna',
-            breed: 'corgie mix',
-            date: '',
-            
-            
-        },
-        {
-            id: 2,
-            kennelNum: 2,
-            name: 'Tallmadge',
-            breed: 'GSD/Boxer',
-            date: '12/14',
-            
-        },
-        {
-            id: 3,
-            kennelNum: 3,
-            name: '',
-            breed: '',
-            date: '',
-            
-        },
-        {
-            id: 4,
-            kennelNum: 4,
-            name: '',
-            breed: '',
-            date: '',
-            
-        },
-        {
-            id: 5,
-            kennelNum: 5,
-            name: '',
-            breed: '',
-            date: '',
-            
-        },
-        {
-            id: 6,
-            kennelNum: 6,
-            name: '',
-            breed: '',
-            date: '',
-            
-        },]
-        const rowTwo = [
-            {
-                id: 7,
-                kennelNum: 7,
-                name: 'Luna',
-                breed: 'corgie mix',
-                date: '',
-                
-                
-            },
-            {
-                id: 8,
-                kennelNum: 8,
-                name: 'Tallmadge',
-                breed: 'GSD/Boxer',
-                date: '12/14',
-                
-            },
-            {
-                id: 9,
-                kennelNum: 9,
-                name: '',
-                breed: '',
-                date: '',
-                
-            },
-            {
-                id: 10,
-                kennelNum: 10,
-                name: '',
-                breed: '',
-                date: '',
-                
-            },
-            {
-                id: 11,
-                kennelNum: 11,
-                name: '',
-                breed: '',
-                date: '',
-                
-            },
-            {
-                id: 12,
-                kennelNum: 12,
-                name: '',
-                breed: '',
-                date: '',
-                
-            },
-    ]
+const CurrentDogs = () => {
+    const { loading, data } = useQuery(QUERY_DOGS);
+    const dogs = data?.dogs || []; // Corrected the data structure assuming it's an array of dogs
+  console.log(dogs)
     return (
         <section>
-        <h1 className="m-5">Kennel View</h1>
-      <div className="grid grid-cols-2 place-content-center">
+                    <div className="grid grid-cols-4 m-1 ">
+            <div></div>
+        <div className="h-15 col-span-2 bg-violet-200 border border-violet-600 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+   
+    <div className="grid grid-cols-4 p-4 ">
+        <p className="text-center text-black ">Gender</p>
+        <h5 className="text-gray-900 dark:text-white text-center">Name</h5>
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center">Breed</p>
+        <p className="">Birth Year</p>
         
-          <div className="">
-            { rowOne.map (({id, name, breed, kennelNum, date}) => (
-                <Card key={id} kennelNum={kennelNum} name={name} breed={breed} date={date}/>
-            ) )}
-          </div>
-          <div className="">
-            { rowTwo.map (({id, name, breed, kennelNum, date}) => (
-                <Card key={id} kennelNum={kennelNum} name={name} breed={breed} date={date}/>
-            ) )}
-          </div>
+    </div>
+    </div>
+    </div>
+           <div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          dogs.map(({ id, name, breed, dob, gender }) => (
+            <Card key={id} gender={gender} name={name} breed={breed} dob={dob}/> // Added parentheses for returning JSX
+          ))
+        )}
       </div></section>
     );
   }

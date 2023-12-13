@@ -1,29 +1,22 @@
-import Dogs from '../components/Dogs';
-import luna from '../images/luna.png';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_DOGS } from '../../utils/queries';
+import Card from '../components/Dogs';
 
 const DogProfile = () => {
-    const rowOne = [
-        {
-            id: 1,
-            kennelNum: 1,
-            name: 'Luna',
-            breed: 'corgie mix',
-            date: '',
-            
-            
-        }
-  ]
-
+    const { loading, data } = useQuery(QUERY_DOGS);
+    const dogs = data?.dogs || []; // Corrected the data structure assuming it's an array of dogs
+  console.log(dogs)
     return (
         <section>
-        <h1 class="m-5">dogs</h1>
-      <div class="grid grid-cols-2 place-content-center">
-        
-          <div class="">
-            { rowOne.map (({id, name, breed, kennelNum, date}) => (
-                <Dogs key={id} kennelNum={kennelNum} name={name} breed={breed} date={date}/>
-            ) )}
-          </div>
+           <div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          dogs.map(({ id, name, breed, dob, gender }) => (
+            <Card key={id} gender={gender} name={name} breed={breed} dob={dob}/> // Added parentheses for returning JSX
+          ))
+        )}
       </div></section>
     );
   }
