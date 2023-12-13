@@ -1,0 +1,62 @@
+[
+    {
+        "roomNumber" : "1",
+        "roomName": "Aspen Room"
+    }, 
+    {
+        "roomNumber" : "2",
+        "roomName": "Denver Room"
+    }, 
+    {
+        "roomNumber" : "3",
+        "roomName": "Boulder Room"
+    }, 
+    {
+        "roomNumber" : "4",
+        "roomName": "Colorado Springs Room"
+    }, 
+    {
+        "roomNumber" : "5",
+        "roomName": "Red Rocks Room"
+    }, 
+    {
+        "room 1" : "6",
+        "roomName": "Fort Collins Room"
+    }, 
+    {
+        "room 1" : "7",
+        "roomName": "Pueblo Room"
+    }, 
+    {
+        "room 1" : "8",
+        "roomName": "Vail Room"
+    }, 
+    {
+        "room 1" : "9",
+        "roomName": "Loveland Room"
+    }, 
+    {
+        "room 1" : "10",
+        "roomName": "Estes Park Room"
+    }, 
+    {
+        "room 1" : "11",
+        "roomName": "Aurora Room"
+    }, 
+    {
+        "room 1" : "12",
+        "roomName": "Westminster Room"
+    }, 
+    {
+        "room 1" : "13",
+        "roomName": "Breckendridge Room"
+    }, 
+    {
+        "room 1" : "14",
+        "roomName": "Golden Room"
+    }, 
+    {
+        "room 1" : "15",
+        "roomName": "Telluride Room"
+    }
+]
