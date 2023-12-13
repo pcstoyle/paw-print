@@ -92,7 +92,7 @@ const resolvers = {
         _id: dogId,
       });
       return dog;
-    }
+    },
 
     updateRoom: async (parent, { amOnly, pmOnly, amAndPm  }) => {
       const updatedRoom = await Room.findOneAndUpdate(
@@ -100,7 +100,7 @@ const resolvers = {
       );
       
       return updatedRoom;
-    },
+    }
 
   },
 
