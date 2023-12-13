@@ -15,19 +15,15 @@ query Query($ownerId: ID!) {
 
 export const QUERY_DOGS = gql `
 query Dogs {
-    dogs {
-      age
-      breed
-      gender
-      name
-      owner {
-        lastName
-      }
-      rabies
-      Distemper
-      bordetella
-    }
-  }`
+  dogs {
+    _id
+    breed
+    dob
+    gender
+    name
+    checkedIn
+  }
+}`
 
 export const QUERY_SINGLE_DOG = gql `
 query Dogs($dogsId: ID!) {

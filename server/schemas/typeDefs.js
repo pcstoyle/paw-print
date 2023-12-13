@@ -92,7 +92,7 @@ const typeDefs = `
     dog(dogsId: ID!): Dog
     owners: [Owner]
     owner(ownerId: ID!): Owner
-    
+    room: [Room]
   }
 
   type Mutation {
@@ -101,6 +101,7 @@ const typeDefs = `
     addOwner(first: String!, last: String!, email: String, phone: String) : Owner
     addDog(name: String!, breed: String!, dob: Int!, gender: String!, checkedIn: Boolean, ownerId: ID!): Dog
     removeDog (dogId: ID!) : Dog
+    updateRoom (roomNum: Int, amOnly: Boolean, pmOnly: Boolean, amAndPm: Boolean ): Room
   }
 `;
 

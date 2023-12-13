@@ -24,11 +24,11 @@ export const ADD_USER = gql`
   }
 `;
 export const ADD_OWNER = gql `
-mutation addOwner($fullName: String!, $email: String!, $phone: String!) {
-  addOwner(fullName: $fullName, email: $email, phone: $phone) {
-    _id
-    fullName
-    phone
+mutation addOwner($first: String!, $last: String!, $email: String, $phone: String) {
+  addOwner(first: $first, last: $last, email: $email, phone: $phone) {
     email
+    first
+    last
+    phone
   }
 }`
