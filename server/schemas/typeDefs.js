@@ -55,8 +55,6 @@ const typeDefs = `
     breed: String!
     dob: String!
     gender: String!
-    vacs: [Vacs]
-    feeding: [Feeding]
     checkedIn: Boolean
     owner: [Owner]
   }
@@ -99,7 +97,7 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addOwner(first: String!, last: String!, email: String, phone: String) : Owner
-    addDog(name: String!, breed: String!, dob: Int!, gender: String!, checkedIn: Boolean, ownerId: ID!): Dog
+    addDog(name: String!, breed: String!, dob: String!, gender: String!, checkedIn: Boolean, ownerId: ID): Dog
     removeDog (dogId: ID!) : Dog
     updateRoom (roomNum: Int, amOnly: Boolean, pmOnly: Boolean, amAndPm: Boolean ): Room
   }

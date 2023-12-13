@@ -32,3 +32,15 @@ mutation addOwner($first: String!, $last: String!, $email: String, $phone: Strin
     phone
   }
 }`
+
+export const ADD_DOG = gql `
+mutation AddDog($name: String!, $dob: String!, $gender: String!, $breed: String!) {
+  addDog(name: $name, dob: $dob, gender: $gender, breed: $breed) {
+    _id
+    breed
+    dob
+    gender
+    name
+  
+  }
+}`
