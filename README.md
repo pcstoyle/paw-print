@@ -15,6 +15,9 @@ This is a MERN application that allows for the employees of a kennel to record w
   
   
 ## Installation 
+![login](https://github.com/pcstoyle/paw-print/assets/137148764/dc994368-3489-4ade-93d4-e093854a9908)
+![dogAdded](https://github.com/pcstoyle/paw-print/assets/137148764/fa19f68b-ab6d-497b-a147-ddef4fe50921)
+![add-dog](https://github.com/pcstoyle/paw-print/assets/137148764/c63b2c71-d33c-4134-968d-cd203572d51d)
 
 
 
