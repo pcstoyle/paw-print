@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const roomSchema = new Schema(
     {
         roomNum: {
@@ -16,15 +17,15 @@ const roomSchema = new Schema(
         amAndPm: {
             type: Boolean,
         },
-        roomDogs: [
+        savedDogs: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'dogs',
+                ref: 'Dog',
             }
         ],
     },
 );
 
-const Room = model('room', roomSchema);
+const Room = model('Room', roomSchema);
 
 module.exports = Room;
