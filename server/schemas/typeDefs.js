@@ -11,7 +11,7 @@ const typeDefs = `
     last: String!
     email: String
     phone: String
-    dog: [Dog]
+    dogs: [Dog]
   }
 
   input OwnerInput {
@@ -20,7 +20,7 @@ const typeDefs = `
     last: String!
     email: String
     phone: String
-    dog: [DogInput]
+    dogs: [DogInput]
   }
 
   type Feeding{
@@ -60,14 +60,11 @@ const typeDefs = `
   }
 
   input DogInput {
-    name: String!
-    breed: String!
-    dob: String!
-    gender: String!
-    vacs: [VacsInput]
-    feeding: [FeedingInput]
-    checkedIn: Boolean
-    owner: [OwnerInput]
+    dogID: ID!
+    name: String
+    breed: String
+    dob: String
+    gender: String
   }
 
   type Auth {
@@ -80,6 +77,7 @@ const typeDefs = `
     amOnly: Boolean
     pmOnly: Boolean
     amAndPm: Boolean
+    savedDogs: [Dog]
   }
 
   type Query {
@@ -87,19 +85,23 @@ const typeDefs = `
     user(username: String!): User
     me: User
     dogs: [Dog]
-    dog(dogsId: ID!): Dog
+    dog(name: String!): Dog
     owners: [Owner]
     owner(ownerId: ID!): Owner
-    room: [Room]
+    rooms: [Room]
+    room(roomNum: Int!): Room
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
+    addRoom(roomNum: Int!): Room
     login(email: String!, password: String!): Auth
     addOwner(first: String!, last: String!, email: String, phone: String) : Owner
     addDog(name: String!, breed: String!, dob: String!, gender: String!, checkedIn: Boolean, ownerId: ID): Dog
     removeDog (dogId: ID!) : Dog
-    updateRoom (roomNum: Int, amOnly: Boolean, pmOnly: Boolean, amAndPm: Boolean ): Room
+    addDogToRoom(dogID: ID!, roomNum: Int!): Room
+    addDogToOwner(dogID: ID!, email: String!): Owner
+    clearRoomData(roomNum: Int!): Room
   }
 `;
 

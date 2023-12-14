@@ -26,21 +26,15 @@ query Dogs {
 }`
 
 export const QUERY_SINGLE_DOG = gql `
-query Dogs($dogsId: ID!) {
-    dog(dogsId: $dogsId) {
-      name
-      gender
-      breed
-      age
-      rabies
-      bordetella
-      Distemper
-      owner {
-        lastName
-       
-      }
-    }
+query Dog($name: String!) {
+  dog(name: $name) {
+    _id
+    breed
+    dob
+    gender
+    name
   }
+}
 `
 export const QUERY_ME = gql`
 query Query {
