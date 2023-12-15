@@ -36,6 +36,19 @@ query Dog($name: String!) {
   }
 }
 `
+export const QUERY_ROOMS = gql`
+query Rooms {
+  rooms {
+    savedDogs {
+      breed
+      _id
+      dob
+      gender
+      name
+    }
+    roomNum
+  }
+}`
 export const QUERY_ME = gql`
 query Query {
     me {

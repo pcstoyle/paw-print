@@ -1,12 +1,18 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { QUERY_ROOMS } from '../../utils/queries';
 import { QUERY_DOGS } from '../../utils/queries';
-import Card from '../components/Dogs';
+import Card from '../components/Card';
 
 const CurrentDogs = () => {
-    const { loading, data } = useQuery(QUERY_DOGS);
-    const dogs = data?.dogs || []; // Corrected the data structure assuming it's an array of dogs
-  console.log(dogs)
+  const {  data: dataRooms } = useQuery(QUERY_ROOMS);
+  const rooms = dataRooms?.rooms || [];
+
+  const {  data: dataDogs } = useQuery(QUERY_DOGS);
+  const allDogs =  dataDogs?.dogs || [];
+
+
+
     return (
         <section>
                     <div className="grid grid-cols-4 m-1 ">
@@ -23,11 +29,9 @@ const CurrentDogs = () => {
     </div>
     </div>
            <div>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          dogs.map(({ id, name, breed, dob, gender }) => (
-            <Card key={id} gender={gender} name={name} breed={breed} dob={dob}/> // Added parentheses for returning JSX
+        { (
+          rooms.map(({ id, name, breed, roomNum, gender }) => (
+            <Card key={id} gender={gender} name={name} breed={breed} roomNum={roomNum} allDogs={allDogs}/> // Added parentheses for returning JSX
           ))
         )}
       </div></section>

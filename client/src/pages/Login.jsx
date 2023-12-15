@@ -20,7 +20,7 @@ const Login = () => {
     try {
       const { data } = await login({ variables: { ...userFormData } });
       Auth.login(data.login.token);
-      history.push('/Home');
+      history('/Home');
     } catch (e) {
       console.error(e);
     }
