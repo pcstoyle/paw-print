@@ -20,8 +20,10 @@ Make sure all packages are installed, importantly Node and mongoDB. Insure that 
   
 ## Usage
 Useful for kennel employees, they can search for dogs, owners, and update rooms for their furry guests. 
-! [alt] (/client/src/images/login)
-! [alt] (./client/src/images/)
+![login](https://github.com/pcstoyle/paw-print/assets/137148764/e6a0941a-9ce3-4e53-bc24-80a35c072965)
+![dogAdded](https://github.com/pcstoyle/paw-print/assets/137148764/8efcd7e8-9fa4-4e77-869d-f3ddaa0302c2)
+![add-dog](https://github.com/pcstoyle/paw-print/assets/137148764/69cd0b89-1edf-4129-b5b4-a7b0ef6b03cc)
+
   
 ## Tests
   
